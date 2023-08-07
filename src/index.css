@@ -1,4 +1,14 @@
+
+:root{
+  --dark : #271033;
+  --silver : #cccccc;
+  --turq : #e55934;
+  --sky : #56cbf9;
+}
+
+
 body {
+  background-color: var(--turq);
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
@@ -13,6 +23,11 @@ code {
 }
 
 h1{
+  color: var(--silver);
   font-size: 4rem;
   text-align: center;
+  background-color: var(--dark);
+  margin: 0;
+  padding: 2rem;
+  border-radius: 0 0 50vh 50vh;
 }
