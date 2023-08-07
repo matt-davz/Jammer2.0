@@ -1,3 +1,21 @@
 .highlight{
   color: var(--turq);
 }
+
+.playlist-app{
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.listContainers{
+  background-color: var(--dark);
+  color: var(--silver);
+  width: 30%;
+  padding: 1rem;
+}
+
+ul{
+  padding: 0;
+  margin: 0;
+}

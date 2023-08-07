@@ -1,0 +1,18 @@
+.playlistName{
+    background-color: transparent;
+    border: none;
+    border-bottom: solid;
+    color: var(--silver);
+    width: 100%;
+    font-size: 1.5rem;
+    font-weight: bold;
+    outline: none;
+}
+
+.add{
+    background-color: var(--turq);
+    border: none;
+    padding: 0.5rem;
+    border-radius: 50vh;
+
+}

@@ -1,0 +1,27 @@
+
+.searchContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 20rem;
+}
+
+.searchBar{
+    display: block;
+    width: 20rem;
+    background-color: var(--dark);
+    border: none;
+    font-size: 1.5rem;
+    color: var(--silver);
+    text-align: center;
+    border-radius: 50vh;
+    font-weight: bold;
+    outline: none;
+}
+
+.searchButton{
+    border: none;
+    border-radius: 50vh;
+    margin-top: 1rem;
+}
