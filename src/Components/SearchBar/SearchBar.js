@@ -1,12 +1,23 @@
-import React from "react";
+import React, {useState} from "react";
 import './SearchBar.css';
 
-function SearchBar(){
+function SearchBar(props){
+
+    const [term ,setTerm] = useState('');
+ 
+    const handleChange = (e) => { // adds input to term state
+        setTerm(e.target.value)
+    }
+
+    const handleClick = () => { //sends search term to prop to then be used in APP for spotify api
+        props.onSearch(term)
+    }
+
     return (
         <div className="searchContainer">
             <h2>Discover a track</h2>
-            <input className="searchBar" type='text'/>
-            <button className="searchButton">SEARCH</button>
+            <input className="searchBar" type='text' onChange={handleChange}/>
+            <button className="searchButton" onClick={handleClick}>SEARCH</button>
         </div>
     );
 };

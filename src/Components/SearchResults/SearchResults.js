@@ -2,13 +2,17 @@ import React from "react";
 import './SearchResults.css';
 import TrackList from '../TrackList/TrackList'
 
-function SearchResults() {
+function SearchResults(props) {
+
+    
+    
+
     return(
         <div className="listContainers">
-           <TrackList /> 
+                <TrackList tracks={props.searchResults} /> 
         </div>
         
     )
 }
 
-export default SearchResults;
+export default SearchResults;          
