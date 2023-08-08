@@ -1,9 +1,37 @@
 .trackContainer{
     list-style: none;
     border-bottom: solid;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
+
+ 
 
 .trackContainer:last-child{
     border: none;
 }
 
+.btn{
+    background-color: transparent;
+    background-position: center center;
+    background-repeat: no-repeat;
+    height: 50px;
+    width: 50px;
+    border: none;
+    transform: scale(1);
+    transition: transform 150ms ease-in-out;
+}
+
+.btn:hover{
+    filter: brightness(120%);
+    transform: scale(1.2);
+}
+
+.remove{
+    background-image: url(./round-minus.svg);
+}
+
+.addbtn {
+    background-image: url(./round-plus.svg);
+}

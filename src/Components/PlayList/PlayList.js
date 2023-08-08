@@ -2,13 +2,16 @@ import React, {useState} from "react";
 import './PlayList.css';
 import TrackList from '../TrackList/TrackList'
 
-function PlayList(){
-    const [addedTracks,setAddedTracks] = useState([])
+function PlayList(props){
+    
+    const handleChange = (e) => {
+        props.changePlaylistName(e.target.value)
+    }
 
     return (
         <div className="listContainers"> 
-            <input className="playlistName" type='text' placeholder="Name Your Playlist"/>
-            <TrackList tracks={addedTracks}/>
+            <input onChange={handleChange}  className="playlistName" defaultValue="New Playlist"/>
+            <TrackList onRemove={props.onRemove} isRemove={true} tracks={props.addToPlayList}/>
             <button className="add">Add To Spotify</button>
         </div>
     )
