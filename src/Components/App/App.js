@@ -12,7 +12,7 @@ function App() {
   const [addToPlayList,setAddToPLaylist] = useState([])
   const handleSearch = (term) => { //takes input from <SearchBar> and stores it in searchResearch
     Spotify.search(term).then(results => {
-      setSearchResults(results)
+      setSearchResults(results) 
     })
   
 
@@ -25,14 +25,21 @@ function App() {
   const addPlaylist = useCallback((track) => {
     if(addToPlayList.some((savedTrack) => savedTrack.id === track.id)) return;
     setAddToPLaylist((prevTrack) => [track,...prevTrack])
+    
   }, [addToPlayList])
 
   const removeTrack = (track) => {
     setAddToPLaylist(prevTrack => prevTrack.filter(tracks => tracks.id !== track.id ))
   }
   
-  const onSave = (tracks) => {
-
+  const onSave = () => {
+      const trackUri = addToPlayList.map(track => track.uri);
+      console.log(trackUri)
+      Spotify.savePlaylist(playListName,trackUri).then( () => {
+        setAddToPLaylist([]);
+        setPlayListName("New PLaylist");
+      }
+      )
   }
   
 
