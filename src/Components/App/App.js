@@ -35,11 +35,10 @@ function App() {
   const onSave = () => {
       const trackUri = addToPlayList.map(track => track.uri);
       console.log(trackUri)
-      Spotify.savePlaylist(playListName,trackUri).then( () => {
+      Spotify.savePlaylist(playListName,trackUri)
         setAddToPLaylist([]);
-        setPlayListName("New PLaylist");
-      }
-      )
+        setPlayListName("New Playlist");
+      
   }
   
 
