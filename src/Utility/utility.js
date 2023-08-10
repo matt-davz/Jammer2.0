@@ -1,6 +1,7 @@
 const clientId = '868195f0bf0e479e98c8bc76070a3438'; // Insert client ID here.
 const redirectUri = 'http://localhost:3000/'; // Have to add this to your accepted Spotify redirect URIs on the Spotify API.
 let accessToken;
+let userId;
 
 const Spotify = {
   getAccessToken() {
@@ -46,26 +47,33 @@ const Spotify = {
     });
   },
 
-  savePlaylist(name, trackUris) {
-    if (!name || !trackUris.length) {
-      return;
-    }
-
+  getUserId() {
     const accessToken = Spotify.getAccessToken();
     const headers = { Authorization: `Bearer ${accessToken}` };
-    let userId;
 
     fetch('https://api.spotify.com/v1/me', {
         headers: headers,
       }).then(response => {
+        
           if (!response.ok) {
             throw new Error('Request failed with status:', response.status);
           }
           return response.json();
         })
         .then(jsonResponse => {
-          userId = jsonResponse.id;
-          return fetch(`https://api.spotify.com/v1/users/${userId}/playlists`, {
+        userId = jsonResponse.id;
+         return jsonResponse.id;})
+  },
+
+  savePlaylist(name, trackUris) {
+    if (!name || !trackUris.length) {
+      return;
+    }
+    const accessToken = Spotify.getAccessToken();
+    const headers = { Authorization: `Bearer ${accessToken}` };
+    const url = `https://api.spotify.com/v1/users/${userId}/playlists`
+
+          return fetch(url, {
             headers: headers,
             method: 'POST',
             body: JSON.stringify({ name: name })
@@ -97,11 +105,18 @@ const Spotify = {
             .catch(error => {
               console.error('Error:', error.message);
             });
-        })
-        .catch(error => {
-          console.error('Error:', error.message);
-        });
-      
+  },
+  getUserPlaylist () {
+
+    this.getAccessToken().then(accessToken => {
+        const request = {
+            method: 'GET',
+            headers: {'Authorization' : `Bearer ${accessToken}`}
+        } 
+
+        
+    })
+
   }
 };
 

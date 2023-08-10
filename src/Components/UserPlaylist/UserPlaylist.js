@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import './UserPlaylist.css'
-import Track from "../Track/Track";
+
 
 
 function UserPlaylist () {
@@ -8,7 +8,12 @@ function UserPlaylist () {
     
     
     return (
-        <></>
+        <div>
+            <h2>Your Playlists</h2>
+            <ul>
+
+            </ul>
+        </div>
     )
 }
 

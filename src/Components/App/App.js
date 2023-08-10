@@ -17,6 +17,8 @@ function App() {
       setSearchResults(results) 
     })
     
+    Spotify.getUserId()
+
 
   }
 
@@ -36,7 +38,6 @@ function App() {
   
   const onSave = () => {
       const trackUri = addToPlayList.map(track => track.uri);
-      console.log(trackUri)
       Spotify.savePlaylist(playListName,trackUri)
         setAddToPLaylist([]);
         setPlayListName("New Playlist");
