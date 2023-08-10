@@ -2,12 +2,12 @@ import React from "react";
 import './DisplayPlaylist.css';
 import Track from "../Track/Track";
 
-function DisplayPlaylist () {
+function DisplayPlaylist (props) {
     return (
-        <div>
-            <img />
-            <h3></h3>
-            <p></p>
+        <div className="trackContainer">
+            <img src={props.playlist.img} className="albumCover"/>
+            <h3>{props.playlist.name}</h3>
+            <p>{props.playlist.numOfTracks} Tracks</p>
         </div>
     )
 }

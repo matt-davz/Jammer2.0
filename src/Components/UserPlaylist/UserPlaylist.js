@@ -4,14 +4,20 @@ import DisplayPlaylist from "../DisplayPlaylist/DIsplayPlaylist";
 
 
 
-function UserPlaylist () {
-    
+function UserPlaylist (props) {
     
     return (
         <div className="userPlaylistContianer">
             <h2>Your Playlists</h2>
             <ul>
-                <DisplayPlaylist />
+                {props.userPlaylist.map(playlist => {
+                    return (
+                        <DisplayPlaylist 
+                        key={playlist.id}
+                        playlist={playlist}
+                        />
+                    )
+                })}
             </ul>
         </div>
     )

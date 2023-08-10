@@ -11,12 +11,13 @@ function App() {
   const [playListName,setPlayListName] = useState("New Playlist");
   const [addToPlayList,setAddToPLaylist] = useState([]);
   const [userPlaylist,setUserPlaylist] = useState([]);
-
+  
   useEffect(() => {
     Spotify.getAccessToken()
     Spotify.getUserId()
-    setUserPlaylist(Spotify.getUserPlaylist())
-    
+    Spotify.getUserPlaylist().then(result => {
+      setUserPlaylist(result)
+    })
   },[]) // gets access token and user ID also propmts login
 
   
@@ -24,7 +25,7 @@ function App() {
     Spotify.search(term).then(results => {
       setSearchResults(results) 
     })
-    
+   
   } 
 
   const changePlaylistName = (name) => {
@@ -65,7 +66,7 @@ function App() {
           onRemove={removeTrack}
           onSave={onSave}
           /> */}
-          <UserPlaylist />
+          <UserPlaylist userPlaylist={userPlaylist}/>
           </div>
         </section>
       </div>
