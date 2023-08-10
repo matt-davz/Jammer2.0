@@ -6,7 +6,11 @@
     align-items: center;
 }
 
- 
+.trackContent{
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
 
 .trackContainer:last-child{
     border: none;
@@ -16,6 +20,11 @@
     width: 100px;
     display: flex;
     justify-content: flex-end;
+}
+
+.albumCover{
+    height: 60px;
+    aspect-ratio: 1;
 }
 
 .btn{

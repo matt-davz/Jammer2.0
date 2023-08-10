@@ -4,7 +4,7 @@ import SearchBar from '../SearchBar/SearchBar';
 import PlayList from '../PlayList/PlayList';
 import SearchResults from '../SearchResults/SearchResults';
 import Spotify from '../../Utility/utility';
-
+import UserPlaylist from '../UserPlaylist/UserPlaylist';
 
 function App() {
   const [searchResults,setSearchResults] = useState([]) //this gets the object array from the API set in handleSearch
@@ -51,6 +51,7 @@ function App() {
         <SearchBar onSearch={handleSearch}/>
         <section className='playlist-app'>  
           <SearchResults searchResults={searchResults} onAdd={addPlaylist}/*object array from api sent as prop to searchResults*/ />
+          <div className="listContainers"> 
           <PlayList 
           playListName={playListName}
           addToPlayList={addToPlayList}
@@ -58,6 +59,8 @@ function App() {
           onRemove={removeTrack}
           onSave={onSave}
           />
+          {/* <UserPlaylist /> */}
+          </div>
         </section>
       </div>
    </div>
