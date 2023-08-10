@@ -108,14 +108,25 @@ const Spotify = {
   },
   getUserPlaylist () {
 
-    this.getAccessToken().then(accessToken => {
+        let accessToken = Spotify.getAccessToken()
+
         const request = {
             method: 'GET',
             headers: {'Authorization' : `Bearer ${accessToken}`}
         } 
 
+        fetch(`https://api.spotify.com/v1/users/${userId}/playlists`,request).then(response => {
+            if(!response.ok){
+                throw new Error('Request failed',response.status)
+            }
+            return response.json()
+        }).then(jsonResponse => {
+            console.log(jsonResponse)
+        }
+            
+        )
         
-    })
+    
 
   }
 };
