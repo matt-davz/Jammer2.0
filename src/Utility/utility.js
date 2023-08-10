@@ -115,19 +115,22 @@ const Spotify = {
             headers: {'Authorization' : `Bearer ${accessToken}`}
         } 
 
-        fetch(`https://api.spotify.com/v1/users/${userId}/playlists`,request).then(response => {
+         return fetch(`https://api.spotify.com/v1/users/${userId}/playlists`,request).then(response => {
             if(!response.ok){
                 throw new Error('Request failed',response.status)
             }
-            return response.json()
-        }).then(jsonResponse => {
-            console.log(jsonResponse)
-        }
-            
-        )
-        
-    
-
+            return response.json().then((jsonResponse) => {
+                return jsonResponse.items.map(playlist => ({
+                    name:playlist.name,
+                    img:playlist.images[0].url,
+                    playlist_uri: playlist.uri,
+                    numOfTracks:playlist.tracks.total,
+                    tracks:playlist.tracks.href,
+                    id:playlist.id
+                }))
+            })
+                
+            })
   }
 };
 

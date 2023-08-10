@@ -15,6 +15,8 @@ function App() {
   useEffect(() => {
     Spotify.getAccessToken()
     Spotify.getUserId()
+    setUserPlaylist(Spotify.getUserPlaylist())
+    
   },[]) // gets access token and user ID also propmts login
 
   
@@ -22,9 +24,7 @@ function App() {
     Spotify.search(term).then(results => {
       setSearchResults(results) 
     })
-
-    Spotify.getUserPlaylist()
-
+    
   } 
 
   const changePlaylistName = (name) => {
@@ -58,14 +58,14 @@ function App() {
         <section className='playlist-app'>  
           <SearchResults searchResults={searchResults} onAdd={addPlaylist}/*object array from api sent as prop to searchResults*/ />
           <div className="listContainers"> 
-          <PlayList 
+          {/* <PlayList 
           playListName={playListName}
           addToPlayList={addToPlayList}
           changePlaylistName={changePlaylistName}
           onRemove={removeTrack}
           onSave={onSave}
-          />
-          {/* <UserPlaylist /> */}
+          /> */}
+          <UserPlaylist />
           </div>
         </section>
       </div>

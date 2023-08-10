@@ -1,17 +1,17 @@
 import React, { useState } from "react";
 import './UserPlaylist.css'
+import DisplayPlaylist from "../DisplayPlaylist/DIsplayPlaylist";
 
 
 
 function UserPlaylist () {
-    const [userPlaylist,setUserPlaylist] = useState([])
     
     
     return (
-        <div>
+        <div className="userPlaylistContianer">
             <h2>Your Playlists</h2>
             <ul>
-
+                <DisplayPlaylist />
             </ul>
         </div>
     )
