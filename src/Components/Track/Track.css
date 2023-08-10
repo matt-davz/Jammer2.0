@@ -12,6 +12,12 @@
     border: none;
 }
 
+.buttonContainer{
+    width: 100px;
+    display: flex;
+    justify-content: flex-end;
+}
+
 .btn{
     background-color: transparent;
     background-position: center center;
@@ -34,4 +40,12 @@
 
 .addbtn {
     background-image: url(./round-plus.svg);
+}
+
+.play{
+    background-image: url(./play-outline.svg);
+}
+
+.pause{
+    background-image: url(./pause-outline.svg);
 }

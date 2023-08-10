@@ -11,8 +11,10 @@
 .listContainers{
   background-color: var(--dark);
   color: var(--silver);
-  width: 30%;
+  width: 40%;
   padding: 1rem;
+  overflow-y: auto;
+  max-height: 40rem;
 }
 
 ul{

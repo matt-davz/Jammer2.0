@@ -10,11 +10,13 @@ function App() {
   const [searchResults,setSearchResults] = useState([]) //this gets the object array from the API set in handleSearch
   const [playListName,setPlayListName] = useState("New Playlist")
   const [addToPlayList,setAddToPLaylist] = useState([])
+
+
   const handleSearch = (term) => { //takes input from <SearchBar> and stores it in searchResearch
     Spotify.search(term).then(results => {
       setSearchResults(results) 
     })
-  
+    
 
   }
 
