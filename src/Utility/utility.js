@@ -134,7 +134,6 @@ const Spotify = {
       }
   
       const playlistJsonResponse = await playlistResponse.json();
-      console.log(playlistJsonResponse);
   
       const playlists = playlistJsonResponse.items.map(playlist => ({
         name: playlist.name,
@@ -150,7 +149,49 @@ const Spotify = {
       console.error('Error in getUserPlaylist:', error);
       return [];
     }
-  }
+  },
+
+  async getPlayListSongs(playlistId){
+    try {
+
+        const accessToken = Spotify.getAccessToken()
+        const request = {
+            method: 'GET',
+            headers: { 'Authorization': `Bearer ${accessToken}` }
+        }
+        const url = `https://api.spotify.com/v1/playlists/${playlistId}/tracks`
+
+        const response = await fetch(url, request);
+        const jsonResponse = await response.json();
+
+        const playlistTracks = await jsonResponse;
+        const trackArrays = []
+        const tracks = []
+        
+        playlistTracks.items.map(trackArray => (
+            trackArrays.push(trackArray)
+        ))
+    
+
+        trackArrays.map(track => ( tracks.push({
+            name:track.track.name,
+            artist:track.track.artists[0].name,
+            album: track.track.album.name,
+            uri: track.track.uri,
+            preview_url: track.track.preview_url,
+            img:track.track.album.images[0].url,
+            id:track.track.id
+        })
+        ))
+
+        return tracks
+    } catch(error){
+        console.error('Error in getUserPlaylist:', error);
+        return []
+    }
+
+    }
+
   
 };
 

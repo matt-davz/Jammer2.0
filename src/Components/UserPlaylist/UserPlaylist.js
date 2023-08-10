@@ -11,6 +11,7 @@ function UserPlaylist (props) {
             <h2>Your Playlists</h2>
             <ul>
                 {props.userPlaylist.map(playlist => {
+                    
                     return (
                         <DisplayPlaylist 
                         key={playlist.id}

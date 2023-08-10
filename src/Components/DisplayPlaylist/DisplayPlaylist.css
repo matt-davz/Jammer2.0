@@ -1,0 +1,7 @@
+.caret{
+    background-image: url(./caret-line.svg);
+}
+
+.caret.active{
+    transform: rotate(180deg);
+}
