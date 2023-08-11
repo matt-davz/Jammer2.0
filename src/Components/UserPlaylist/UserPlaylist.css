@@ -1,0 +1,47 @@
+.userPlaylistContianer{
+    overflow: auto;
+    max-height: 25rem;
+}
+
+.userPlaylistContianer::-webkit-scrollbar{
+    width: 0.8rem;
+}
+
+.userPlaylistContianer::-webkit-scrollbar-thumb{
+    background-color: var(--silver);
+    border-radius: 0.5rem;
+}
+
+.userPlaylistContianer::-webkit-scrollbar-track{
+    background-color: black;
+    border-radius: 0.5rem;
+}
+
+ h2{
+    margin: 0;
+    margin-bottom: 1rem;
+}
+
+.playlistHeader{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.playlistHeader h2{
+    margin: 0
+}
+
+.headerRight{
+    display: flex;
+    align-items: center;
+    
+}
+
+.headerRight label{
+    cursor: pointer;
+}
+
+.refresh{
+    background-image: url(./twotone-refresh.svg);
+}

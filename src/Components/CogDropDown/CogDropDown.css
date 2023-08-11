@@ -1,0 +1,9 @@
+.cogDropDown{
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+    position: absolute;
+    top: 30px;
+    transform: translateX(-2rem);
+    z-index: 100;
+}

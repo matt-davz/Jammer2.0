@@ -56,11 +56,14 @@ function Track(props){
     
     return(
         <div className="trackContainer">
-            
+            <div className="trackContent">
+               <img className="albumCover" src={props.track.img}/>
             <li >
+                
                 <h3>{props.track.name}</h3>
                 <p>{`${props.track.artist} | ${props.track.album}`}</p>
-            </li>
+            </li> 
+            </div>
             <div className="buttonContainer">
                 {renderPreview()}
                {renderButton()} 
