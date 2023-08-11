@@ -68,7 +68,7 @@ const Spotify = {
          return jsonResponse.id;})
   },
 
-  savePlaylist(name, trackUris) {
+  async savePlaylist(name, trackUris) {
     if (!name || !trackUris.length) {
       return;
     }
@@ -134,15 +134,24 @@ const Spotify = {
       }
   
       const playlistJsonResponse = await playlistResponse.json();
-  
-      const playlists = playlistJsonResponse.items.map(playlist => ({
-        name: playlist.name,
-        img: playlist.images[0].url,
-        playlist_uri: playlist.uri,
-        numOfTracks: playlist.tracks.total,
-        tracks: playlist.tracks.href,
-        id: playlist.id
-      }));
+      
+      const playlists = playlistJsonResponse.items.map(playlist => {
+        const playlistData = {
+          name: playlist.name,
+          playlist_uri: playlist.uri,
+          numOfTracks: playlist.tracks.total,
+          tracks: playlist.tracks.href,
+          id: playlist.id
+        };
+      
+        if (playlist.images.length > 0) {
+          playlistData.img = playlist.images[0].url;
+        } else {
+            playlist.img = './monke.jpeg'
+        }
+      
+        return playlistData;
+      });
   
       return playlists;
     } catch (error) {

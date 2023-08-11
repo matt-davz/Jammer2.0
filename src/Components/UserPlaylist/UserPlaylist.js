@@ -13,8 +13,9 @@ function UserPlaylist (props) {
         <div className="playlistHeader">
             <h2>Your Playlists</h2>
             <div className="headerRight">
-                <label>Create Playlist</label>
+                <label htmlFor="createPlaylist">Create Playlist</label>
                 <button id="createPlaylist" className="btn addbtn" onClick={props.createPlaylist}></button>
+                <button className="btn refresh" onClick={props.refresh}/>
             </div>
         </div>
         
@@ -26,11 +27,14 @@ function UserPlaylist (props) {
                         <DisplayPlaylist 
                         key={playlist.id}
                         playlist={playlist}
+                        customizeTracks={props.customizeTracks}
                         />
                     )
                 })}
             </ul>
+            
         </div>
+        
         </>
         
     )

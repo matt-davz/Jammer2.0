@@ -35,32 +35,30 @@ function DisplayPlaylist (props) {
         }
     }
 
-    const handleCog = (e) => {
-        if(cogClicked){
-            setCogClicked(false)
-            
-        } else {
-            setCogClicked(true)
-            
-        }
-    }
-
     window.addEventListener('click', (e) => {
         if(e.target !== cogRef.current){
             setCogClicked(false)
         }
     })
 
+    const customizePlaylist = (tracks) => {
+        props.customizeTracks(props.playlist)
+    }
+
 
     return (
         <div className="displayPlaylist">
-<div className="trackContainer">
-                <img src={props.playlist.img} className="albumCover"/>
-                <h3>{props.playlist.name}</h3>
-                <p>{props.playlist.numOfTracks} Tracks</p>
-                <button className="caret btn" onClick={handleCaret}/>
-                <button ref={cogRef} className="cog btn" onClick={() => setCogClicked(!cogClicked)} />
-                {cogClicked && <CogDropDown ref={cogDropDown} cogClicked={cogClicked} />}
+            <div className="displayPlaylistContainer">
+                <div className="playlistLeft">
+                    <img src={props.playlist.img} className="albumCover"/>
+                    <h3>{props.playlist.name}</h3>
+                </div>
+                <div className="playlistRight">
+                    <p>{props.playlist.numOfTracks} Tracks</p>
+                    <button className="caret btn" onClick={handleCaret}/>
+                    <button ref={cogRef} className="cog btn" onClick={() => setCogClicked(!cogClicked)} />
+                    {cogClicked && <CogDropDown customizePlaylist={customizePlaylist} cogClicked={cogClicked} />}
+                </div>
             </div>
             <DropDownMenu playlistTracks={playlistTracks} drop={dropTracks}/>
             

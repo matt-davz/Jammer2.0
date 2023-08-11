@@ -10,3 +10,24 @@
     background-image: url(./cog.svg);
     position: relative;
 }
+
+.displayPlaylistContainer{
+    width: 99%;
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem 0;
+    border-bottom: solid;
+}
+
+
+
+.playlistRight{
+    position: relative;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.playlistLeft{
+    display: flex;
+    gap: 1rem;
+}

@@ -5,8 +5,7 @@ function CogDropDown (props) {
     
        return (
        <div className="cogDropDown">
-        <button className="dropDownBtn"  ><p>Customize Playlist</p></button>
-        <button className="dropDownBtn"  ><p>Remove Playlist</p></button>
+        <button onClick={props.customizePlaylist} className="dropDownBtn"  ><p>Customize Playlist</p></button>
     </div> 
     ) 
     

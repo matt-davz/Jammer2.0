@@ -3,7 +3,7 @@
     flex-direction: column;
     width: fit-content;
     position: absolute;
-    right:1.5rem;
-    bottom: -3.5rem;
+    top: 30px;
+    transform: translateX(-2rem);
     z-index: 100;
 }
