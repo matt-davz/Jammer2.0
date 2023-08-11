@@ -5,3 +5,8 @@
 .caret.active{
     transform: rotate(180deg);
 }
+
+.cog{
+    background-image: url(./cog.svg);
+    position: relative;
+}

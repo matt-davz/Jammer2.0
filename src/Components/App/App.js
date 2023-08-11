@@ -11,10 +11,10 @@ function App() {
   const [playListName,setPlayListName] = useState("New Playlist");
   const [addToPlayList,setAddToPLaylist] = useState([]);
   const [userPlaylist,setUserPlaylist] = useState([]);
+  const [refreshPlaylist, setRefreshPlaylist] = useState(false);
+  const [openPlaylistCreator, setOpenPlaylistCreator] = useState(false);
   
   useEffect(() => {
-    Spotify.getAccessToken()
-    Spotify.getUserId()
     Spotify.getUserPlaylist().then(result => {
       setUserPlaylist(result)
     })
@@ -42,32 +42,41 @@ function App() {
     setAddToPLaylist(prevTrack => prevTrack.filter(tracks => tracks.id !== track.id ))
   }
   
-  const onSave = () => {
+  const onSave = useCallback(() => {
       const trackUri = addToPlayList.map(track => track.uri);
       Spotify.savePlaylist(playListName,trackUri)
         setAddToPLaylist([]);
         setPlayListName("New Playlist");
       
-  }
+  }, [addToPlayList, playListName])
   
+  const createPlaylist = () => {
+    setOpenPlaylistCreator(!openPlaylistCreator)
+  }
 
   return (
    <div>
       <h1>Ja<span className="highlight">mm</span>ing</h1>
       <div className="App">
-        <SearchBar onSearch={handleSearch}/>
         <section className='playlist-app'>  
-          <SearchResults searchResults={searchResults} onAdd={addPlaylist}/*object array from api sent as prop to searchResults*/ />
+          
           <div className="listContainers"> 
-          {/* <PlayList 
-          playListName={playListName}
-          addToPlayList={addToPlayList}
-          changePlaylistName={changePlaylistName}
-          onRemove={removeTrack}
-          onSave={onSave}
-          /> */}
-          <UserPlaylist userPlaylist={userPlaylist}/>
+          <UserPlaylist createPlaylist={createPlaylist} userPlaylist={userPlaylist}/>
+          
           </div>
+          {openPlaylistCreator && 
+          <div className='listContainers'>
+            <PlayList 
+            playListName={playListName}
+            addToPlayList={addToPlayList}
+            changePlaylistName={changePlaylistName}
+            onRemove={removeTrack}
+            onSave={onSave}
+            />
+            <SearchBar onSearch={handleSearch}/>
+            <SearchResults searchResults={searchResults} onAdd={addPlaylist} />
+          </div>}
+          
         </section>
       </div>
    </div>

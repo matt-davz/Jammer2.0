@@ -1,8 +1,24 @@
 .userPlaylistContianer{
-
+    overflow: auto;
 }
 
  h2{
     margin: 0;
     margin-bottom: 1rem;
+}
+
+.playlistHeader{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.playlistHeader h2{
+    margin: 0
+}
+
+.headerRight{
+    display: flex;
+    align-items: center;
+    gap: 1rem;
 }

@@ -5,10 +5,20 @@ import DisplayPlaylist from "../DisplayPlaylist/DIsplayPlaylist";
 
 
 function UserPlaylist (props) {
+
+   
     
     return (
-        <div className="userPlaylistContianer">
+        <>
+        <div className="playlistHeader">
             <h2>Your Playlists</h2>
+            <div className="headerRight">
+                <label>Create Playlist</label>
+                <button id="createPlaylist" className="btn addbtn" onClick={props.createPlaylist}></button>
+            </div>
+        </div>
+        
+        <div className="userPlaylistContianer">
             <ul>
                 {props.userPlaylist.map(playlist => {
                     
@@ -21,6 +31,8 @@ function UserPlaylist (props) {
                 })}
             </ul>
         </div>
+        </>
+        
     )
 }
 
