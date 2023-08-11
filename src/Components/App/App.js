@@ -68,7 +68,7 @@ function App() {
   }, [addToPlayList, playListName])
   
   const createPlaylist = () => {
-    setOpenPlaylistCreator(!openPlaylistCreator)
+    setOpenPlaylistCreator(true)
     setOpenCustomization(false)
   }
 

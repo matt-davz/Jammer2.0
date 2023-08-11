@@ -74,41 +74,54 @@ const Spotify = {
     }
     const accessToken = Spotify.getAccessToken();
     const headers = { Authorization: `Bearer ${accessToken}` };
-    const userId = Spotify.getUserId();
-    const url = `https://api.spotify.com/v1/users/${userId}/playlists`
+    let userId;
 
-          return fetch(url, {
-            headers: headers,
-            method: 'POST',
-            body: JSON.stringify({ name: name })
-          })
-            .then(response => {
-              if (!response.ok) {
-                throw new Error('Request failed with status:', response.status);
-              }
-              return response.json();
-            })
-            .then(jsonResponse => {
-              console.log(trackUris);
-              const playlistId = jsonResponse.id;
-              return fetch(`https://api.spotify.com/v1/users/${userId}/playlists/${playlistId}/tracks`, {
-                headers: headers,
-                method: 'POST',
-                body: JSON.stringify({ uris: trackUris })
-              });
-            })
-            .then(response => {
-              if (!response.ok) {
-                throw new Error('Request failed with status:', response.status);
-              }
-              return response.json();
-            })
-            .then(jsonResponse => {
-              console.log(jsonResponse);
-            })
-            .catch(error => {
-              console.error('Error:', error.message);
-            });
+    fetch('https://api.spotify.com/v1/me', {
+        headers: headers,
+      }).then(response => {
+        
+          if (!response.ok) {
+            throw new Error('Request failed with status:', response.status);
+          }
+          return response.json();
+        })
+        .then(jsonResponse => {
+        userId = jsonResponse.id;
+         return jsonResponse}).then(() => {
+            return fetch(`https://api.spotify.com/v1/users/${userId}/playlists`, {
+                        headers: headers,
+                        method: 'POST',
+                        body: JSON.stringify({ name: name })
+                    })
+                        .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Request failed with status:', response.status);
+                        }
+                        return response.json();
+                        })
+                        .then(jsonResponse => {
+                        console.log(trackUris);
+                        const playlistId = jsonResponse.id;
+                        return fetch(`https://api.spotify.com/v1/users/${userId}/playlists/${playlistId}/tracks`, {
+                            headers: headers,
+                            method: 'POST',
+                            body: JSON.stringify({ uris: trackUris })
+                        });
+                        })
+                        .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Request failed with status:', response.status);
+                        }
+                        return response.json();
+                        })
+                        .then(jsonResponse => {
+                        console.log(jsonResponse);
+                        })
+                        .catch(error => {
+                        console.error('Error:', error.message);
+                        });
+         })
+            
   },
   async getUserPlaylist() {
     try {
