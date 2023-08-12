@@ -39,6 +39,19 @@ function App() {
     setOpenPlaylistCreator(false)
   }
 
+  const removeCustomTracks = (track) => {
+    setCustomizePlaylistTracks(prevTrack => prevTrack.filter(tracks => tracks.id !== track.id))
+  }
+
+  const addCustomTracks = (track) => {
+    if(customizePlaylistTracks.some((savedTracks => savedTracks.id === track.id))) return
+    setCustomizePlaylistTracks(prev => [track,...prev])
+  }
+
+  const saveCustomePlaylist = (playlistId) => {
+    
+  }
+
   const handleSearch = (term) => { //takes input from <SearchBar> and stores it in searchResearch
     Spotify.search(term).then(results => {
       setSearchResults(results) 
@@ -90,7 +103,18 @@ function App() {
           {(openCustomization || openPlaylistCreator) && 
           
           <div className='listContainers'>
-            <Customize playlistTracks={customizePlaylistTracks} playlistName={customPlaylistName} custom={openCustomization} create={openPlaylistCreator}/>
+            <Customize 
+            remove={removeCustomTracks} 
+            add={addCustomTracks}
+            playlistTracks={customizePlaylistTracks} 
+            playlistName={customPlaylistName} 
+            custom={openCustomization} 
+            saveCustomPlaylist={saveCustomePlaylist}
+
+            
+            
+            
+            create={openPlaylistCreator}/>
           </div>
 
           }

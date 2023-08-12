@@ -53,9 +53,9 @@ function Customize (props) {
         return (
             <div>
                 <h2>{props.playlistName}</h2>
-                <TrackList isRemove={true} tracks={props.playlistTracks}/>
+                <TrackList onRemove={props.remove} isRemove={true} tracks={props.playlistTracks}/>
                 <SearchBar onSearch={handleSearch}/>
-                <SearchResults searchResults={searchResults} onAdd={addPlaylist} />
+                <SearchResults searchResults={searchResults} onAdd={props.add} />
             </div>
         )
     } else if(props.create){
