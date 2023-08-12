@@ -18,6 +18,11 @@ function App() {
   const [customizePlaylistTracks,setCustomizePlaylistTracks] = useState([])
   const [openCustomization,setOpenCustomization] = useState(false);
   const [customPlaylistName,setCustomPlaylistName] = useState('');
+  const [resetTracks,setResetTracks] = useState([])
+  const [customPlaylistId, setCustomPlaylistId] = useState('')
+  const [playlistSnapShot,setPlaylistSnapShot] = useState('')
+  const [toAdd,setToAdd] = useState([])
+  const [toRemove,setToRemove] = useState([])
   
   useEffect(() => {
     Spotify.getUserPlaylist().then(result => {
@@ -35,21 +40,50 @@ function App() {
     setCustomPlaylistName(tracks.name)
     const playlistTracks = await Spotify.getPlayListSongs(tracks.id);
     setCustomizePlaylistTracks(playlistTracks) 
+    setResetTracks(playlistTracks)
     setOpenCustomization(true)
     setOpenPlaylistCreator(false)
+    setCustomPlaylistId(tracks.id)
+    setPlaylistSnapShot(tracks.snapShotId)
   }
+
+  useEffect(() => {
+  }, [toRemove,toAdd])
+
+  const addToSpotifyPlaylist = () => {
+    const uris = toAdd.map(track => track.uri)
+    Spotify.addSong(uris,customPlaylistId)
+    setToAdd([])
+  }
+
+  const removeFromSpotifyPlaylist = () => {
+    
+  }
+
+  const saveCustomePlaylist = () => {
+    
+  }
+
 
   const removeCustomTracks = (track) => {
     setCustomizePlaylistTracks(prevTrack => prevTrack.filter(tracks => tracks.id !== track.id))
+
+    setToRemove(prev => [track,...prev])
   }
 
   const addCustomTracks = (track) => {
     if(customizePlaylistTracks.some((savedTracks => savedTracks.id === track.id))) return
     setCustomizePlaylistTracks(prev => [track,...prev])
+
+    if(toAdd.some((savedTracks => savedTracks.id === track.id))) return
+    setToAdd(prev => [track,...prev])
   }
 
-  const saveCustomePlaylist = (playlistId) => {
-    
+
+  const resetCustomPlaylist = () => {
+    setCustomizePlaylistTracks(resetTracks);
+    setToAdd([]);
+    setToRemove([]);
   }
 
   const handleSearch = (term) => { //takes input from <SearchBar> and stores it in searchResearch
@@ -109,7 +143,8 @@ function App() {
             playlistTracks={customizePlaylistTracks} 
             playlistName={customPlaylistName} 
             custom={openCustomization} 
-            saveCustomPlaylist={saveCustomePlaylist}
+            saveCustomPlaylist={addToSpotifyPlaylist}
+            resetPlaylist={resetCustomPlaylist}
 
             
             

@@ -54,6 +54,10 @@ function Customize (props) {
             <div>
                 <h2>{props.playlistName}</h2>
                 <TrackList onRemove={props.remove} isRemove={true} tracks={props.playlistTracks}/>
+                <div>
+                    <button onClick={props.resetPlaylist}>Reset All</button>
+                    <button onClick={props.saveCustomPlaylist}>Save to Spotify</button>
+                </div>
                 <SearchBar onSearch={handleSearch}/>
                 <SearchResults searchResults={searchResults} onAdd={props.add} />
             </div>

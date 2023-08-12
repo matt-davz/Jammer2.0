@@ -147,14 +147,14 @@ const Spotify = {
       }
   
       const playlistJsonResponse = await playlistResponse.json();
-      
       const playlists = playlistJsonResponse.items.map(playlist => {
         const playlistData = {
           name: playlist.name,
           playlist_uri: playlist.uri,
           numOfTracks: playlist.tracks.total,
           tracks: playlist.tracks.href,
-          id: playlist.id
+          id: playlist.id,
+          snapShotId: playlist.snapshot_id
         };
       
         if (playlist.images.length > 0) {
@@ -212,7 +212,44 @@ const Spotify = {
         return []
     }
 
-    }
+    },
+    async addSong(uris, playlistId) {
+      try {
+          const accessToken = Spotify.getAccessToken();
+          const headers = {
+              'Authorization': `Bearer ${accessToken}`,
+              'Content-Type': 'application/json'
+          };
+  
+          const body = JSON.stringify({
+              uris: uris,
+              position: 0
+          });
+  
+          const response = await fetch(`https://api.spotify.com/v1/playlists/${playlistId}/tracks`, {
+              method: 'POST',
+              headers: headers,
+              body: body
+          });
+  
+          if (response.ok) {
+              const data = await response.json();
+              return data;
+          } else {
+              const errorData = await response.json();
+              throw new Error(`Request failed with status: ${response.status}, ${errorData.error.message}`);
+          }
+      } catch (error) {
+          console.error(error);
+          throw error;
+      }
+  }
+  
+  
+  
+
+  
+  
 
   
 };
