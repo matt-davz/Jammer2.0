@@ -14,8 +14,7 @@
   width: 40%;
   padding: 1rem;
   overflow-y: auto;
-  
-  max-height: 40rem;
+  height: fit-content;
 }
 
 ul{

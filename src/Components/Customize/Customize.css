@@ -1,0 +1,10 @@
+.bottomCustom{
+    height: 50%;
+    margin-top: 2rem;
+}
+
+#customContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}

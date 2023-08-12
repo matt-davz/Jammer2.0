@@ -58,14 +58,15 @@ function Customize (props) {
                     <button onClick={props.resetPlaylist}>Reset All</button>
                     <button onClick={props.saveCustomPlaylist}>Save to Spotify</button>
                 </div>
+                <div className="bottomCustom">
                 <SearchBar onSearch={handleSearch}/>
-                <SearchResults searchResults={searchResults} onAdd={props.add} />
+                <SearchResults searchResults={searchResults} onAdd={props.add} />  
+                </div>
             </div>
         )
     } else if(props.create){
         return (
             <div>
-                <h2>Create</h2>
                 <PlayList 
                 playListName={playListName}
                 addToPlayList={addToPlayList}
@@ -73,8 +74,11 @@ function Customize (props) {
                 onRemove={removeTrack}
                 onSave={onSave}
                 />
-                <SearchBar onSearch={handleSearch}/>
-                <SearchResults searchResults={searchResults} onAdd={addPlaylist} />
+                <div className="bottomCustom">
+                   <SearchBar onSearch={handleSearch}/>
+                   <SearchResults searchResults={searchResults} onAdd={addPlaylist} /> 
+                </div>
+                
             </div>
         )
     }
@@ -82,17 +86,3 @@ function Customize (props) {
 
 export default Customize 
 
-// </div>
-//           {(openPlaylistCreator || openCustomization) && 
-//           <div className='listContainers'>
-//             {openPlaylistCreator && <PlayList 
-//             playListName={playListName}
-//             addToPlayList={addToPlayList}
-//             changePlaylistName={changePlaylistName}
-//             onRemove={removeTrack}
-//             onSave={onSave}
-//             />}
-//             {openCustomization && <CustomizePlaylist playlistName={customPlaylistName} playlistTracks={customizePlaylistTracks}/>} 
-//             <SearchBar onSearch={handleSearch}/>
-//             <SearchResults searchResults={searchResults} onAdd={addPlaylist} />
-//           </div>}

@@ -1,0 +1,18 @@
+.resultsContianer{
+    overflow-y: auto;
+    max-height: 20rem;
+}
+
+.resultsContianer::-webkit-scrollbar{
+    width: 0.8rem;
+}
+
+.resultsContianer::-webkit-scrollbar-thumb{
+    background-color: var(--silver);
+    border-radius: 0.5rem;
+}
+
+.resultsContianer::-webkit-scrollbar-track{
+    background-color: black;
+    border-radius: 0.5rem;
+}

@@ -31,7 +31,7 @@ function Track(props){
 
     const handlePlay = () => {
         let audio = document.getElementById(`audio${props.track.id}`)
-        audio.volume = 0.1;
+        audio.volume = 0.5;
         if(clicked){
             audio.play()
             setClicked(false)
@@ -39,6 +39,9 @@ function Track(props){
             audio.pause()
             setClicked(true)
         }
+
+        const volumeContainer = document.getElementById('volumeContainer');
+        volumeContainer.classList.add('active')
     }
 
     const renderPreview = () => {

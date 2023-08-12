@@ -1,0 +1,32 @@
+.volumeContainer{
+    width: fit-content;
+    transform: rotate(-90deg);
+    background-color: var(--dark);
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    position: fixed;
+    left: -12rem;
+    top: 50%;
+    transition: all 150ms ease-in-out;
+    
+}
+
+.volumeContainer.active{
+    left: -6.2rem;
+}
+
+.speaker{
+    rotate: 90deg;
+    background-image: url(./volume-2.svg);
+    background-size: 70% 70%;
+}
+
+.escape{
+    background-image: url(./x-bold.svg);
+    background-size: 70% 70%;
+}
+
+.volumeSlider{
+    margin-left: 1rem;
+}

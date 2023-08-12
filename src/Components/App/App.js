@@ -1,12 +1,10 @@
 import React, {useCallback, useEffect, useState} from 'react'
 import './App.css';
-import SearchBar from '../SearchBar/SearchBar';
-import PlayList from '../PlayList/PlayList';
-import SearchResults from '../SearchResults/SearchResults';
 import Spotify from '../../Utility/utility';
 import UserPlaylist from '../UserPlaylist/UserPlaylist';
-import CustomizePlaylist from '../CustomizePlaylist/CustomizePlaylist';
 import Customize from '../Customize/Customize';
+import Volume from '../Volume/Volume';
+
 
 function App() {
   const [searchResults,setSearchResults] = useState([]); //this gets the object array from the API set in handleSearch
@@ -103,8 +101,11 @@ function App() {
   }
 
   return (
-   <div>
+    <>
+    <Volume />
+    <div>
       <h1>Ja<span className="highlight">mm</span>ing</h1>
+      
       <div className="App">
         <section className='playlist-app'>  
           
@@ -118,7 +119,7 @@ function App() {
           </div>
           {(openCustomization || openPlaylistCreator) && 
           
-          <div className='listContainers'>
+          <div id="customContainer" className='listContainers'>
             <Customize 
             remove={removeCustomTracks} 
             add={addCustomTracks}
@@ -139,6 +140,8 @@ function App() {
         </section>
       </div>
    </div>
+    </>
+   
   );
 }
 
