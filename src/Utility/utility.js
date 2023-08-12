@@ -243,6 +243,36 @@ const Spotify = {
           console.error(error);
           throw error;
       }
+  },
+  async removeSong(uris,playlistId,snapShotId){
+    try{
+    const accessToken = Spotify.getAccessToken();
+    const headers = {
+      'Authorization': `Bearer ${accessToken}`,
+      'Content-Type': 'application/json'
+    };
+  
+    const body = JSON.stringify({
+      uris: uris,
+      snapshot_id: snapShotId
+    } )
+
+    const response = await fetch (`https://api.spotify.com/v1/playlists/${playlistId}/tracks`, {
+      method: 'DELETE',
+      headers: headers,
+      body: body
+    })
+
+    if(response.okay){
+      const jsonResponse = await response.json();
+      return jsonResponse;
+    } else {
+      throw new Error(`Request failed with status: ${response.status}, ${response.message}`)
+    }
+
+    } catch (error) {
+      console.log(error)
+    }
   }
   
   

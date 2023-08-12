@@ -15,14 +15,14 @@ function App() {
   const [userPlaylist,setUserPlaylist] = useState([]);
   // const [refreshPlaylist, setRefreshPlaylist] = useState(false);
   const [openPlaylistCreator, setOpenPlaylistCreator] = useState(false);
-  const [customizePlaylistTracks,setCustomizePlaylistTracks] = useState([])
+  const [customizePlaylistTracks,setCustomizePlaylistTracks] = useState([]);
   const [openCustomization,setOpenCustomization] = useState(false);
   const [customPlaylistName,setCustomPlaylistName] = useState('');
-  const [resetTracks,setResetTracks] = useState([])
-  const [customPlaylistId, setCustomPlaylistId] = useState('')
-  const [playlistSnapShot,setPlaylistSnapShot] = useState('')
-  const [toAdd,setToAdd] = useState([])
-  const [toRemove,setToRemove] = useState([])
+  const [resetTracks,setResetTracks] = useState([]);
+  const [customPlaylistId, setCustomPlaylistId] = useState('');
+  const [playlistSnapShot,setPlaylistSnapShot] = useState('');
+  const [toAdd,setToAdd] = useState([]);
+  const [toRemove,setToRemove] = useState([]);
   
   useEffect(() => {
     Spotify.getUserPlaylist().then(result => {
@@ -51,17 +51,27 @@ function App() {
   }, [toRemove,toAdd])
 
   const addToSpotifyPlaylist = () => {
+    if(toAdd.length <= 0) return
     const uris = toAdd.map(track => track.uri)
     Spotify.addSong(uris,customPlaylistId)
     setToAdd([])
   }
 
   const removeFromSpotifyPlaylist = () => {
+    if(toRemove.length <= 0) return 
+    const uris = toRemove.map(track => track.uri);
+    console.log(uris)
+    Spotify.removeSong(uris,customPlaylistId,playlistSnapShot)
     
   }
 
-  const saveCustomePlaylist = () => {
-    
+  const saveCustomePlaylist = async () => {
+    if(toAdd.lenght<0 && toRemove.length<0){
+      return
+    }
+
+    removeFromSpotifyPlaylist()
+    addToSpotifyPlaylist()
   }
 
 
@@ -86,34 +96,6 @@ function App() {
     setToRemove([]);
   }
 
-  const handleSearch = (term) => { //takes input from <SearchBar> and stores it in searchResearch
-    Spotify.search(term).then(results => {
-      setSearchResults(results) 
-    })
-   
-  } 
-
-  const changePlaylistName = (name) => {
-    setPlayListName(name)
-  }
-
-  const addPlaylist = useCallback((track) => {
-    if(addToPlayList.some((savedTrack) => savedTrack.id === track.id)) return;
-    setAddToPLaylist((prevTrack) => [track,...prevTrack])
-    
-  }, [addToPlayList])
-
-  const removeTrack = (track) => {
-    setAddToPLaylist(prevTrack => prevTrack.filter(tracks => tracks.id !== track.id ))
-  }
-  
-  const onSave = useCallback(() => {
-      const trackUri = addToPlayList.map(track => track.uri);
-      Spotify.savePlaylist(playListName,trackUri)
-        setAddToPLaylist([]);
-        setPlayListName("New Playlist");
-      
-  }, [addToPlayList, playListName])
   
   const createPlaylist = () => {
     setOpenPlaylistCreator(true)
@@ -143,7 +125,7 @@ function App() {
             playlistTracks={customizePlaylistTracks} 
             playlistName={customPlaylistName} 
             custom={openCustomization} 
-            saveCustomPlaylist={addToSpotifyPlaylist}
+            saveCustomPlaylist={saveCustomePlaylist}
             resetPlaylist={resetCustomPlaylist}
 
             
