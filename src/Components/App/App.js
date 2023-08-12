@@ -6,6 +6,7 @@ import SearchResults from '../SearchResults/SearchResults';
 import Spotify from '../../Utility/utility';
 import UserPlaylist from '../UserPlaylist/UserPlaylist';
 import CustomizePlaylist from '../CustomizePlaylist/CustomizePlaylist';
+import Customize from '../Customize/Customize';
 
 function App() {
   const [searchResults,setSearchResults] = useState([]); //this gets the object array from the API set in handleSearch
@@ -85,21 +86,14 @@ function App() {
             userPlaylist={userPlaylist}
             customizeTracks={customizeTracks}
           />
-          
           </div>
-          {(openPlaylistCreator || openCustomization) && 
+          {(openCustomization || openPlaylistCreator) && 
+          
           <div className='listContainers'>
-            {openPlaylistCreator && <PlayList 
-            playListName={playListName}
-            addToPlayList={addToPlayList}
-            changePlaylistName={changePlaylistName}
-            onRemove={removeTrack}
-            onSave={onSave}
-            />}
-            {openCustomization && <CustomizePlaylist playlistName={customPlaylistName} playlistTracks={customizePlaylistTracks}/>} 
-            <SearchBar onSearch={handleSearch}/>
-            <SearchResults searchResults={searchResults} onAdd={addPlaylist} />
-          </div>}
+            <Customize playlistTracks={customizePlaylistTracks} playlistName={customPlaylistName} custom={openCustomization} create={openPlaylistCreator}/>
+          </div>
+
+          }
           
         </section>
       </div>

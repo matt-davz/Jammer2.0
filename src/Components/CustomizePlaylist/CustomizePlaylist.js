@@ -13,8 +13,6 @@ function CustomizePlaylist(props) {
 
     return (
         <>
-            <h2>{props.playlistName}</h2>
-            
             <TrackList tracks={props.playlistTracks}/>
 
  

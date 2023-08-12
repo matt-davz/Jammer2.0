@@ -6,7 +6,7 @@ function DropDownMenu(props){
     if(props.drop){
         return (
             <div>
-                <TrackList tracks={props.playlistTracks} /> 
+                <TrackList isRemove={null} tracks={props.playlistTracks} /> 
             </div>
         )
     } else {

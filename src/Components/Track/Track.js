@@ -18,7 +18,9 @@ function Track(props){
         if(props.isRemove){
             return (
                 <button className="btn remove" onClick={removeTrack}></button>
-            )}
+            )} else if(props.isRemove === null){
+                return
+            }
             
         
             return (
