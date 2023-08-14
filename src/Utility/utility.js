@@ -168,7 +168,7 @@ const Spotify = {
   
       return playlists;
     } catch (error) {
-      console.error('Error in getUserPlaylist:', error);
+      console.error('Error in getUserPlaylist:', error, error.message);
       return [];
     }
   },
@@ -208,7 +208,7 @@ const Spotify = {
 
         return tracks
     } catch(error){
-        console.error('Error in getUserPlaylist:', error);
+        console.error('Error in getUserPlaylist:', error, error.message);
         return []
     }
 
