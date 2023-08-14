@@ -1,3 +1,37 @@
-.trackList{
-    
+.trackListContainer{
+    max-height: 18rem;
+    overflow-y: auto;
+}
+
+.TrackList{
+    overflow-y: auto;
+    max-height: 18rem;
+    padding: 0 0.5rem;
+}
+
+.TrackList::-webkit-scrollbar{
+    width: 0.8rem;
+}
+
+.TrackList::-webkit-scrollbar-thumb{
+    background-color: var(--silver);
+    border-radius: 0.5rem;
+}
+
+.TrackList::-webkit-scrollbar-track{
+    background-color: black;
+    border-radius: 0.5rem;
+}
+
+ h2{
+    margin: 0;
+    margin-bottom: 1rem;
+}
+
+.more{
+    cursor: pointer;
+}
+
+.more:hover{
+    text-decoration: underline;
 }

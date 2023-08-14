@@ -1,7 +1,7 @@
 .playlistName{
     background-color: transparent;
     border: none;
-    border-bottom: solid;
+    
     color: var(--silver);
     width: 100%;
     font-size: 1.5rem;
@@ -14,8 +14,25 @@
     border: none;
     padding: 0.5rem;
     border-radius: 50vh;
+    width: 8rem;
 }
 
-.required{
-    border: 1px red;
+.playlistHeader{
+    border-bottom: solid;
+    padding: 0.25rem 0;
+}
+
+
+.placeHolder{
+    color: rgba(204,204,204,0.5);
+    text-align: center;
+    padding: 4rem;
+}
+
+.placeHolder h2{
+    margin: 0;
+}
+
+hr{
+    margin-top: 0;
 }

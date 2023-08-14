@@ -15,7 +15,6 @@ function SearchBar(props){
 
     return (
         <div className="searchContainer">
-            <h2>Discover a track</h2>
             <input className="searchBar" type='text' onChange={handleChange}/>
             <button className="searchButton" onClick={handleClick}>SEARCH</button>
         </div>
