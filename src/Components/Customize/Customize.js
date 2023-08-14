@@ -68,36 +68,50 @@ function Customize (props) {
 
     if(props.custom){
         return (
-            <div>
-                <div className="customizeHeader">
-                    <h2>{props.playlistName}</h2>
-                    <div>
-                       <button className="reset" onClick={props.resetPlaylist}>Reset All</button>
-                       <button className="add"onClick={props.saveCustomPlaylist}>Save to Spotify</button> 
-                    </div>
+            <div className="customContainer">
+
+                <div className="listContainers">
+                 <div className="customizeHeader">
+                      <h2>{props.playlistName}</h2>
+                      <div>
+                         <button className="reset" onClick={props.resetPlaylist}>Reset All</button>
+                        <button className="add"onClick={props.saveCustomPlaylist}>Save to Spotify</button> 
+                     </div>
+                 </div>
+                 <TrackList onRemove={props.remove} isRemove={true} tracks={props.playlistTracks}/>
                 </div>
-                <TrackList onRemove={props.remove} isRemove={true} tracks={props.playlistTracks}/>
                 
-                <div className="bottomCustom">
-                <SearchBar onSearch={setTerm}/>
-                <SearchResults searchResults={searchResults} onAdd={props.add} offSet={addMoreTracks}/>  
+                
+                
+                <div className="listContainers">
+                 <div className="bottomCustom">
+                    <SearchBar onSearch={setTerm}/>
+                    <SearchResults searchResults={searchResults} onAdd={props.add} offSet={addMoreTracks}/>  
+                 </div>
                 </div>
             </div>
         )
     } else if(props.create){
         return (
-            <div>
-                <PlayList 
-                playListName={playListName}
-                addToPlayList={addToPlayList}
-                changePlaylistName={changePlaylistName}
-                onRemove={removeTrack}
-                onSave={onSave}
-                />
-                <div className="bottomCustom">
-                   <SearchBar onSearch={setTerm}/>
-                   <SearchResults searchResults={searchResults} onAdd={addPlaylist} offSet={addMoreTracks} /> 
+            <div className="customContainer">
+                <div className="listContainers">
+                    <PlayList 
+                    playListName={playListName}
+                    addToPlayList={addToPlayList}
+                    changePlaylistName={changePlaylistName}
+                    onRemove={removeTrack}
+                    onSave={onSave}
+                    />
                 </div>
+                
+                <div className="listContainers">
+                    <div className="bottomCustom">
+                    <SearchBar onSearch={setTerm}/>
+                    <SearchResults searchResults={searchResults} onAdd={addPlaylist} offSet={addMoreTracks} /> 
+                    </div>
+                </div>
+
+               
                 
             </div>
         )

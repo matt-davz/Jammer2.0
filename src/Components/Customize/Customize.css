@@ -7,6 +7,8 @@
 .customizeHeader{
     display: flex;
     justify-content: space-between;
+    padding: 1rem 0;
+
 }
 
 .reset{
@@ -16,4 +18,15 @@
     color: var(--turq);
     padding: 0.5rem;
     margin-right: 1rem;
+}
+
+.customContainer{
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    width: 40%;
+}
+
+.customContainer .listContainers{
+    width: 100%;
 }

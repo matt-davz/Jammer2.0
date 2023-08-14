@@ -3,7 +3,10 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    
+    width: fit-content;
+    margin: 0 auto;
+    padding: 1rem 0;
+    gap: 1rem;
 }
 
 .searchBar{
@@ -14,7 +17,7 @@
     font-size: 1.5rem;
     color: var(--silver);
     text-align: center;
-    border-radius: 50vh;
+    border-radius: 0.5rem;
     font-weight: bold;
     outline: none;
     padding: 0.5rem;
@@ -22,7 +25,8 @@
 
 .searchButton{
     border: none;
-    border-radius: 50vh;
+    border-radius: 0.5rem;
+
 
     height: 2.71rem;
     width: 5rem;

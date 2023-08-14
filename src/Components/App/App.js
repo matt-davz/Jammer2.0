@@ -121,7 +121,7 @@ function App() {
           </div>
           {(openCustomization || openPlaylistCreator) && 
           
-          <div id="customContainer" className='listContainers'>
+          
             <Customize 
             remove={removeCustomTracks} 
             add={addCustomTracks}
@@ -135,7 +135,7 @@ function App() {
             
             
             create={openPlaylistCreator}/>
-          </div>
+          
 
           }
           
