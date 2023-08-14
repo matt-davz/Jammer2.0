@@ -1,7 +1,9 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useRef, useState } from "react";
 import './Track.css'
 
 function Track(props){
+
+    const audioRef = useRef(null);
 
     const [clicked,setClicked] = useState(true);
 
@@ -51,10 +53,14 @@ function Track(props){
             return (
                 <>
                 <button className={`btn ${clicked ? 'play' : 'pause'}`} onClick={handlePlay}></button>
-                <audio id={`audio${props.track.id}`} src={props.track.preview_url}/>
+                <audio ref={audioRef} id={`audio${props.track.id}`} src={props.track.preview_url} onEnded={endPreview}/>
                 </>
             )
         }
+    }
+
+    const endPreview = () => {
+        setClicked(true)           
     }
     
     

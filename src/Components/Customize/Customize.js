@@ -1,4 +1,4 @@
-import React, {useState, useCallback} from "react";
+import React, {useState, useCallback, useEffect} from "react";
 import './Customize.css';
 import SearchBar from "../SearchBar/SearchBar";
 import SearchResults from "../SearchResults/SearchResults";
@@ -10,21 +10,38 @@ import TrackList from "../TrackList/TrackList";
 
 function Customize (props) {
     const [searchResults,setSearchResults] = useState([]); 
-    
-    
+    const [moreTracks, setMoreTracks] = useState([])
+    const [term,setTerm] = useState('')
     const [playListName,setPlayListName] = useState("New Playlist");
     const [addToPlayList,setAddToPLaylist] = useState([]);
+    const [offSetCount,setOffSetCount] = useState(1)
 
-    const handleSearch = (term) => { //takes input from <SearchBar> and stores it in searchResearch
-        Spotify.search(term).then(results => {
+    useEffect(() => { 
+        if(term === '') return
+        console.log('ye')
+        Spotify.search(term,0).then(results => {
           setSearchResults(results) 
         })
-       
+    },[term])
+
+    useEffect(() => {
+        console.log(searchResults)
+    }, [searchResults])
+      
+
+    const addMoreTracks = () => {
+        if(offSetCount >= 1000) return;
+        const offSet = offSetCount*20;
+        setOffSetCount(prev => prev+1)
+        Spotify.search(term,offSet).then(results => {
+            setSearchResults(prev => [...prev,...results])
+            console.log(results)
+        })
     }
-      
-
-
-      
+    
+    // useEffect(() => {
+    //     console.log(moreTracks)
+    // }, [moreTracks])
 
     
     const changePlaylistName = (name) => {
@@ -52,15 +69,18 @@ function Customize (props) {
     if(props.custom){
         return (
             <div>
-                <h2>{props.playlistName}</h2>
-                <TrackList onRemove={props.remove} isRemove={true} tracks={props.playlistTracks}/>
-                <div>
-                    <button onClick={props.resetPlaylist}>Reset All</button>
-                    <button onClick={props.saveCustomPlaylist}>Save to Spotify</button>
+                <div className="customizeHeader">
+                    <h2>{props.playlistName}</h2>
+                    <div>
+                       <button className="reset" onClick={props.resetPlaylist}>Reset All</button>
+                       <button className="add"onClick={props.saveCustomPlaylist}>Save to Spotify</button> 
+                    </div>
                 </div>
+                <TrackList onRemove={props.remove} isRemove={true} tracks={props.playlistTracks}/>
+                
                 <div className="bottomCustom">
-                <SearchBar onSearch={handleSearch}/>
-                <SearchResults searchResults={searchResults} onAdd={props.add} />  
+                <SearchBar onSearch={setTerm}/>
+                <SearchResults searchResults={searchResults} onAdd={props.add} offSet={addMoreTracks}/>  
                 </div>
             </div>
         )
@@ -75,8 +95,8 @@ function Customize (props) {
                 onSave={onSave}
                 />
                 <div className="bottomCustom">
-                   <SearchBar onSearch={handleSearch}/>
-                   <SearchResults searchResults={searchResults} onAdd={addPlaylist} /> 
+                   <SearchBar onSearch={setTerm}/>
+                   <SearchResults searchResults={searchResults} onAdd={addPlaylist} offSet={addMoreTracks} /> 
                 </div>
                 
             </div>

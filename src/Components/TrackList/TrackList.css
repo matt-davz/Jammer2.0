@@ -5,7 +5,7 @@
 
 .TrackList{
     overflow-y: auto;
-    height: 18rem;
+    max-height: 18rem;
     padding: 0 0.5rem;
 }
 
@@ -26,4 +26,12 @@
  h2{
     margin: 0;
     margin-bottom: 1rem;
+}
+
+.more{
+    cursor: pointer;
+}
+
+.more:hover{
+    text-decoration: underline;
 }

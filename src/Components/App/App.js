@@ -66,8 +66,10 @@ function App() {
   const saveCustomePlaylist = async () => {
     if(toAdd.lenght<0 && toRemove.length<0){
       return
-    }
-
+    } 
+    
+    setOpenPlaylistCreator(true)
+    setOpenCustomization(false)
     removeFromSpotifyPlaylist()
     addToSpotifyPlaylist()
   }

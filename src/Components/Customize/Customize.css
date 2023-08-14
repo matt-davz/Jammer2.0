@@ -1,10 +1,19 @@
 .bottomCustom{
     height: 50%;
-    margin-top: 2rem;
 }
 
-#customContainer{
+
+
+.customizeHeader{
     display: flex;
-    flex-direction: column;
     justify-content: space-between;
+}
+
+.reset{
+    background-color: transparent;
+    border-radius: 50vh;
+    border: 1px solid var(--turq);
+    color: var(--turq);
+    padding: 0.5rem;
+    margin-right: 1rem;
 }
