@@ -1,5 +1,6 @@
 const clientId = '868195f0bf0e479e98c8bc76070a3438'; // Insert client ID here.
-const redirectUri = 'http://golden-gnome-e17ac1.netlify.app'; // Have to add this to your accepted Spotify redirect URIs on the Spotify API.
+const redirectUri = 'https://golden-gnome-e17ac1.netlify.app'
+; // Have to add this to your accepted Spotify redirect URIs on the Spotify API.
 let accessToken;
 let userId;
 
