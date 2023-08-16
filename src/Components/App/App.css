@@ -35,3 +35,34 @@ button{
   margin-top: 5rem;
 }
 
+@media (max-width: 1000px) {
+
+  .playlist-app{
+    flex-direction: column;
+  }
+
+  .listContainers{
+    width: 80% !important;
+  }
+  
+  .customContainer{
+    width: 80% !important;
+  }
+
+  
+
+}
+
+@media (max-width: 500px){
+  .playlistHeader label{
+    display: none;
+  }
+
+  .searchContainer{
+    gap: 0.1rem !important;
+  }
+
+  .searchBar{
+    width: 70% !important;
+  }
+}
